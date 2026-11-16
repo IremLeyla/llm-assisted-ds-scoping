@@ -5,7 +5,7 @@
 ## 1. Problem Clarification
 
 **Problem statement:**
-We don't know where in the onboarding flow users disengage or which behavioural patterns precede abandonment, because "abandonment" has never been defined. The goal is to explain drop-off by discovering and characterising distinct onboarding trajectories, including the ones that end in abandonment, rather than to predict individual users. The onboarding product team will use this to decide which steps to redesign or test first.
+We don't know where in the onboarding flow users disengage or which behavioural patterns precede abandonment, because "abandonment" has never been defined. The goal is to describe and diagnose how users drop off by discovering and characterising distinct onboarding trajectories, including the ones that end in abandonment, rather than to predict individual users. The onboarding product team will use this to decide which steps to redesign or test first.
 
 **Decision-maker / end user:** Onboarding product team (secondary audience: growth / lifecycle marketing).
 
@@ -16,7 +16,7 @@ A user has abandoned onboarding if they started it, did not reach the final step
 
 **Hypothesis, not assumption:** users may drop off around a specific screen (e.g. the third page). The data should show where, and there may be several drop-off patterns.
 
-**Framing choice:** Explain first, predict later. With no labels and no agreed definition there is nothing reliable to predict yet, and the product team needs to know which step to fix, not only who will leave.
+**Framing choice:** Diagnose first, predict later. With no labels and no agreed definition there is nothing reliable to predict yet, and the product team needs to know which step to fix, not only who will leave.
 
 ## 2. Problem Type Classification
 
@@ -25,7 +25,7 @@ A user has abandoned onboarding if they started it, did not reach the final step
 **Why it fits:**
 - There are no labels and no agreed definition of abandonment, so the first job is to discover structure: which paths through onboarding exist, and which of them end in drop-off.
 - The event data is high-dimensional (taps, scrolls, dwell time, screen sequences). Representation learning compresses each session into a compact form that clustering can work with.
-- The product team needs to know where and why users leave, which is a descriptive question, not a predictive one.
+- The product team first needs to know where and how users leave, which is a descriptive question, not a predictive one. The "why" needs extra evidence beyond event logs (see Section 4).
 
 **Later phases:**
 - **Causal analysis / experimentation:** once we know which step is the problem, A/B test fixes (wording, layout, fewer steps) to confirm they improve completion.
@@ -63,6 +63,13 @@ A user has abandoned onboarding if they started it, did not reach the final step
 1. **Sequence clustering with learned representations.** Compress each user's onboarding trajectory (screen sequence, dwell times, interaction counts) into a compact vector, then cluster to find distinct user archetypes, e.g. "opens the first screen and leaves" or "completes everything but the last step". Fits because the data is unlabelled, high-dimensional and sequential.
 2. **Process mining / Markov path analysis.** Build a map of actual transitions between screens with their probabilities. Reveals loops, skipped steps and back-and-forth that a simple funnel hides, and shows where each archetype exits.
 3. **Survival analysis.** Model time until a user drops off. Handles censoring (users who have not had time to return) and lets us compare drop-off timing across clusters and definitions of abandonment.
+
+**Answering "why":** event logs show behaviour, not motivation. Our methods find where users leave and which patterns they follow, but not why. To answer "why" we would add user interviews, short exit surveys and session replays for each archetype, and then test the resulting ideas with A/B experiments.
+
+**How we judge the results (no labels):**
+- Check that clusters are stable when we re-run on different samples of users.
+- Compare clusters with the existing "unfinished onboarding" reminder rule, if there is one, as a weak label.
+- Have the product team review whether the archetypes make sense and are actionable.
 
 **Not appropriate (yet):**
 - **Supervised classifier as the first step.** Needs a validated abandonment label, and would predict who leaves rather than explain where or why.

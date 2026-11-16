@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A6 Onboarding Drop-off</title>
+<style>
+  :root {
+    --beige: #f5efe0;
+    --beige-deep: #e9dfc8;
+    --green: #2f5d3a;
+    --sage: #8fa98a;
+    --ink: #2b2b22;
+    --muted: #6b6a58;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--beige);
+    color: var(--ink);
+    font-family: "Georgia", "Times New Roman", serif;
+    overflow: hidden;
+  }
+  .deck { height: 100%; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    gap: 3vh;
+  }
+  .slide.active { display: flex; }
+  .tag {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(12px, 1.4vw, 16px);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 600;
+  }
+  h1 { font-size: clamp(34px, 6vw, 72px); line-height: 1.05; color: var(--green); }
+  h2 { font-size: clamp(28px, 4.4vw, 52px); line-height: 1.1; color: var(--green); }
+  p, li { font-size: clamp(18px, 2.4vw, 30px); line-height: 1.4; }
+  .sub { color: var(--muted); }
+  ul { list-style: none; display: grid; gap: 1.6vh; }
+  li { padding-left: 1.4em; position: relative; }
+  li::before {
+    content: ""; position: absolute; left: 0; top: .55em;
+    width: .6em; height: .6em; border-radius: 50%; background: var(--sage);
+  }
+  .quote {
+    background: var(--green); color: var(--beige);
+    padding: 3vh 3vw; border-radius: 14px;
+    font-size: clamp(18px, 2.3vw, 28px); line-height: 1.4;
+  }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vw; }
+  .card {
+    background: var(--beige-deep); border-radius: 14px;
+    padding: 3vh 1.6vw; border-top: 6px solid var(--green);
+  }
+  .card b { display: block; color: var(--green); font-size: clamp(18px, 2.2vw, 28px); margin-bottom: 1vh; }
+  .card span { font-size: clamp(14px, 1.7vw, 22px); color: var(--muted); line-height: 1.35; display: block; }
+  .pill {
+    display: inline-block; background: var(--sage); color: var(--ink);
+    padding: .3em .8em; border-radius: 999px; font-size: clamp(14px, 1.8vw, 22px);
+    font-family: "Helvetica Neue", Arial, sans-serif; margin-right: .5em;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 1vh .5vw; }
+  .notes {
+    display: none; position: absolute; left: 0; right: 0; bottom: 0;
+    background: rgba(43,43,34,.92); color: var(--beige);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.4; padding: 14px 8vw;
+  }
+  body.show-notes .slide.active .notes { display: block; }
+  .nav {
+    position: fixed; right: 20px; bottom: 16px;
+    font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14px; color: var(--muted);
+  }
+  .bar { position: fixed; left: 0; top: 0; height: 5px; background: var(--green); transition: width .25s; }
+  @media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
+    .slide { overflow-y: auto; justify-content: flex-start; padding-top: 8vh; }
+  }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+  <section class="slide">
+    <div class="tag">Scenario A6</div>
+    <h1>User Onboarding Drop-off</h1>
+    <p class="sub">Scoping the problem before building any model.</p>
+    <div class="notes">~10 s. Intro: product manager scoping with a DS team; the goal is to define the problem, not to build a model.</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">1 &middot; The problem</div>
+    <h2>"Users abandon onboarding."</h2>
+    <ul>
+      <li>No agreed definition of abandonment</li>
+      <li>No labels, only raw event logs</li>
+      <li>No explanation of where or why</li>
+    </ul>
+    <div class="quote">We don't know where users disengage or which patterns come before it. The onboarding product team will use the answer to decide which steps to redesign or test first.</div>
+    <div class="notes">~35 s. Stress that defining "abandonment" is part of the problem. Working definition: started, did not reach the final step, did not return within X days. "Third page" is a hypothesis, not an assumption.</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">2 &middot; Framing</div>
+    <h2>Diagnose first, predict later</h2>
+    <div class="row">
+      <span class="pill">Unsupervised learning</span>
+      <span class="pill">Representation learning</span>
+    </div>
+    <ul>
+      <li>No labels, so we first discover the structure: which paths exist</li>
+      <li>A classifier would learn our guess of "abandonment" and say <i>who</i> leaves, not <i>where</i></li>
+      <li>Later: A/B tests to check that fixes work</li>
+    </ul>
+    <div class="notes">~35 s. My first idea was ranking/recommendation and A/B testing. Learned that the list names the ML problem type, and A/B testing is the later validation phase.</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">3 &middot; Data and approach</div>
+    <h2>Event logs in, user paths out</h2>
+    <div class="cards">
+      <div class="card"><b>Sequence clustering</b><span>Group users by the path they take. Finds archetypes like "leaves after screen one".</span></div>
+      <div class="card"><b>Process mining</b><span>Map real transitions between screens. Shows what a simple funnel hides.</span></div>
+      <div class="card"><b>Survival analysis</b><span>Time until drop-off. Handles users who haven't left <i>yet</i>.</span></div>
+    </div>
+    <p class="sub">Risks: users who haven't had time to return, install-only users with no events, privacy (GDPR).</p>
+    <div class="notes">~40 s. Event-level data, grouped into sessions and one trajectory per user. Keep one row per user too early and you lose the order of events.</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">4 &middot; The "why"</div>
+    <h2>Logs show behaviour, not motivation</h2>
+    <ul>
+      <li>Where and how users leave: event data and our models</li>
+      <li>Why they leave:</li>
+    </ul>
+    <div class="row">
+      <span class="pill">User interviews</span>
+      <span class="pill">Exit surveys</span>
+      <span class="pill">Session replays</span>
+      <span class="pill">A/B tests</span>
+    </div>
+    <p class="sub">No labels, so we judge clusters by stability, comparison with the reminder-email rule, and product-team review.</p>
+    <div class="notes">~25 s. Be honest about the limit: our methods cannot tell why. The follow-up evidence does.</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">5 &middot; What I learned</div>
+    <h2>Survival analysis</h2>
+    <div class="quote">300 of 1,000 new users haven't finished onboarding, but 200 installed yesterday and may finish tomorrow. Only about 100 have really dropped off. Survival analysis keeps those "not yet" users in the data instead of counting them as failures.</div>
+    <ul>
+      <li>Corrected assumption: drop-off at one page is a hypothesis, so let the data show where</li>
+      <li>LLM used as a thinking partner, I made the final calls</li>
+    </ul>
+    <div class="notes">~25 s. Say the survival analysis explanation in your own words. Mention one real moment where you contributed or corrected something.</div>
+  </section>
+
+</div>
+<div class="nav">&larr; &rarr; to move &middot; N for notes</div>
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const bar = document.getElementById('bar');
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('show-notes');
+  });
+  document.addEventListener('click', e => { show(e.clientX > innerWidth / 2 ? i + 1 : i - 1); });
+  show(parseInt(location.hash.slice(1), 10) - 1 || 0);
+</script>
+</body>
+</html>
