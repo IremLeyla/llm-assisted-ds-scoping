@@ -150,19 +150,32 @@
   </section>
 
   <section class="slide">
-    <div class="tag">4 &middot; Data risks</div>
+    <div class="tag">4 &middot; Guardrails</div>
+    <h2>How it stays honest</h2>
+    <ul>
+      <li>The language model sees only verified numbers, and every number in the text must trace back to a computed value</li>
+      <li>An analyst reviews before executives see it</li>
+      <li>A simple rule ("flag any change over X%") is the baseline to beat</li>
+      <li>We test on past weeks and count the false alarms</li>
+    </ul>
+    <div class="notes">~20 s. "To keep it honest: the language model only sees verified numbers, and every number in the text must trace back to a computed value. An analyst reviews it. And we compare against a simple baseline, like 'flag any change over X percent', and only keep the fancier parts if they reduce false alarms. We'd test this on past weeks."</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">5 &middot; Data risks</div>
     <h2>Where it can go wrong</h2>
     <ul>
       <li><b>Same KPI, different numbers:</b> Meta Ads vs Triple Whale. A team must choose one source of truth</li>
       <li><b>Seasonality:</b> a holiday boost is not a success</li>
       <li><b>Tracking breaks</b> look like real drops</li>
+      <li><b>Short history:</b> one to four years of weekly data, so state the confidence</li>
       <li><b>No comparison group</b> when a change hits everyone at once</li>
     </ul>
-    <div class="notes">~15 s. "In my marketing work, the same KPI showed different numbers in Meta Ads, the ad platform, and in Triple Whale, an analytics tool for online shops. My team chose one source of truth. A dashboard must not silently mix sources."</div>
+    <div class="notes">~25 s. "In my marketing work, the same KPI showed different numbers in Meta Ads, the ad platform, and in Triple Whale, an analytics tool for online shops. My team chose one source of truth. A dashboard must not silently mix sources. Other risks: holiday seasons, tracking breaks, and only one to four years of weekly data, so the system must state how confident it is."</div>
   </section>
 
   <section class="slide">
-    <div class="tag">5 &middot; What I learned</div>
+    <div class="tag">6 &middot; What I learned</div>
     <h2>Difference-in-differences</h2>
     <table>
       <tr><th>Conversion</th><th>Before</th><th>After</th><th>Change</th></tr>
@@ -170,9 +183,20 @@
       <tr><td>Austria (old pictures)</td><td>1.8%</td><td>2.3%</td><td>+0.5</td></tr>
       <tr><td class="hl">Effect of the change</td><td></td><td></td><td class="hl">+0.2</td></tr>
     </table>
-    <p>Austria shows what would have happened anyway because of Valentine's Day. It needs a comparison group and assumes both would have moved the same way.</p>
+    <p>Austria shows what would have happened anyway because of Valentine's Day. It assumes both would have moved the same way, and it needs a comparison group. If a change hits everyone at once, there is none.</p>
     <p class="sub">Corrected assumption: it is not a seasonal model, it is a way to estimate a cause without an experiment.</p>
-    <div class="notes">~25 s + 15 s closing. "My new method is difference-in-differences. New product pictures for a Valentine's bundle in Germany, old ones in Austria. Germany rose 0.7 points, Austria 0.5 because of the season, so the effect is 0.2. I first thought it was a seasonal model. It's a way to estimate a cause without an experiment." CLOSING: "In both cases the lesson was the same: AI helps once the problem is scoped, the limits are clear, and the 'why' has evidence behind it. I used an LLM as a thinking partner and made the decisions myself. Thank you."</div>
+    <div class="notes">~30 s. "My new method is difference-in-differences. New product pictures for a Valentine's bundle in Germany, old ones in Austria. Germany rose 0.7 points, Austria 0.5 because of the season, so the effect is 0.2. I first thought it was a seasonal model. It's a way to estimate a cause without an experiment. It assumes both would have moved the same way, and it can't be used when a change hits everyone at once."</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">7 &middot; How I used the LLM</div>
+    <h2>Thinking partner, my decisions</h2>
+    <ul>
+      <li><b>It helped:</b> split "explain a KPI" into three questions with different methods</li>
+      <li><b>I added:</b> the human-review rule, the source-of-truth problem and the seasonal comparison, all from my own work</li>
+      <li><b>It corrected me:</b> I wanted to give an LLM two years of KPIs to "analyze". It is unreliable on raw tables, so code computes the numbers and the LLM only writes them up</li>
+    </ul>
+    <div class="notes">~40 s. "Same here: the LLM was a thinking partner. It helped me split 'explain a KPI' into three questions. I added the human-review rule, the source-of-truth problem and the seasonal comparison from my own work. And it corrected me: I first wanted to give an LLM two years of KPIs and ask it to analyze them, but LLMs are unreliable on raw tables, so code computes the numbers and the LLM only writes them up." CLOSING: "In both cases the lesson was the same: AI helps once the problem is scoped, the limits are clear, and the 'why' has evidence behind it. Thank you."</div>
   </section>
 
 </div>

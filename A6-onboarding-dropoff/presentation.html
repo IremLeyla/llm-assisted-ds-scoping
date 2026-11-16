@@ -125,19 +125,30 @@
   </section>
 
   <section class="slide">
-    <div class="tag">3 &middot; Data and approach</div>
+    <div class="tag">3 &middot; Data</div>
+    <h2>What we have, and what could mislead us</h2>
+    <ul>
+      <li>Event logs (taps, scrolls, screen views) plus install and device info</li>
+      <li>Kept at event level, not one row per user, so the order of events survives</li>
+      <li>No labels. The reminder-email rule could be a first weak label</li>
+      <li>Risks: users who haven't returned yet, install-only users with no events, privacy (GDPR)</li>
+    </ul>
+    <div class="notes">~25 s. "What data would we have? Event logs: taps, scrolls, screen views, plus install and device information. I learned to keep the data at event level, not one row per user, because otherwise we lose the order of events. There are no labels, but an existing reminder-email rule could be a first weak label. The risks: users who haven't had time to return, install-only users who produce no events at all, and privacy."</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">4 &middot; Approach</div>
     <h2>Event logs in, user paths out</h2>
     <div class="cards">
       <div class="card"><b>Sequence clustering</b><span>Group users by the path they take. Finds archetypes like "leaves after screen one".</span></div>
       <div class="card"><b>Process mining</b><span>Map real transitions between screens. Shows what a simple funnel hides.</span></div>
       <div class="card"><b>Survival analysis</b><span>Time until drop-off. Handles users who haven't left <i>yet</i>.</span></div>
     </div>
-    <p class="sub">Risks: users who haven't had time to return, install-only users with no events, privacy (GDPR).</p>
-    <div class="notes">~25 s. "Three approaches: sequence clustering for user groups, process mining for the real paths, and survival analysis for timing. Event logs show behaviour, not motivation, so for the 'why' we'd add interviews, surveys and session replays." Then click past the next slide quickly.</div>
+    <div class="notes">~20 s. "Three approaches: sequence clustering finds the user groups, process mining maps the real paths between screens, and survival analysis models timing."</div>
   </section>
 
   <section class="slide">
-    <div class="tag">4 &middot; The "why"</div>
+    <div class="tag">5 &middot; The "why"</div>
     <h2>Logs show behaviour, not motivation</h2>
     <ul>
       <li>Where and how users leave: event data and our models</li>
@@ -150,11 +161,11 @@
       <span class="pill">A/B tests</span>
     </div>
     <p class="sub">No labels, so we judge clusters by stability, comparison with the reminder-email rule, and product-team review.</p>
-    <div class="notes">Already said on the previous slide. Click on straight away.</div>
+    <div class="notes">~20 s. "Where and how users leave comes from the event data. For the why, we'd add interviews, exit surveys, session replays and A/B tests. And with no labels, we'd judge the clusters by their stability, by comparing them with the reminder rule, and by product-team review."</div>
   </section>
 
   <section class="slide">
-    <div class="tag">5 &middot; What I learned</div>
+    <div class="tag">6 &middot; What I learned</div>
     <h2>Survival analysis</h2>
     <div class="quote">300 of 1,000 new users haven't finished onboarding, but 200 installed yesterday and may finish tomorrow. Only about 100 have really dropped off. Survival analysis keeps those "not yet" users in the data instead of counting them as failures.</div>
     <ul>
@@ -162,6 +173,17 @@
       <li>LLM used as a thinking partner, I made the final calls</li>
     </ul>
     <div class="notes">~25 s. "My new method is survival analysis. Of 1,000 new users, 300 haven't finished onboarding. But 200 installed yesterday and may finish tomorrow, so only about 100 have really dropped off. Survival analysis keeps those 'not yet' users in the data instead of counting them as failures."</div>
+  </section>
+
+  <section class="slide">
+    <div class="tag">7 &middot; How I used the LLM</div>
+    <h2>Thinking partner, my decisions</h2>
+    <ul>
+      <li><b>It helped:</b> showed that "abandonment" has several possible definitions, so defining it is part of the problem</li>
+      <li><b>I added:</b> the reminder-email observation and example user groups, which refined the data scope</li>
+      <li><b>It corrected me:</b> I read the problem-type list as "what to recommend". It names the kind of ML problem</li>
+    </ul>
+    <div class="notes">~20 s. "I used the LLM as a thinking partner: it drafted and explained, and I decided. It helped me see that 'abandonment' has several possible definitions. I added the reminder-email observation and the example user groups, which refined the data scope. And it corrected me: I read the problem-type list as 'what to recommend', but it names the kind of ML problem."</div>
   </section>
 
 </div>
