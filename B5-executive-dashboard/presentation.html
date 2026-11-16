@@ -86,7 +86,8 @@
     display: none; position: absolute; left: 0; right: 0; bottom: 0;
     background: rgba(43,43,34,.92); color: var(--beige);
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px; line-height: 1.4; padding: 14px 8vw;
+    font-size: 15px; line-height: 1.4; padding: 14px 8vw;
+    max-height: 45vh; overflow-y: auto;
   }
   body.show-notes .slide.active .notes { display: block; }
   .nav {
@@ -110,7 +111,7 @@
     <div class="tag">Scenario B5</div>
     <h1>Executive Dashboard Automation</h1>
     <p class="sub">"An AI that explains weekly KPI changes": what can it honestly say?</p>
-    <div class="notes">~10 s. Intro. Same approach as A6: scope the problem before any modelling.</div>
+    <div class="notes">~15 s. "Second, B5: executives want an AI dashboard that explains weekly KPI changes. I worked as a performance marketing manager, so I looked at it from that side."</div>
   </section>
 
   <section class="slide">
@@ -121,7 +122,7 @@
       <li>Users: C-level and VP level, who decide whether to act, investigate or wait</li>
       <li>An analyst reviews the output before executives see it</li>
     </ul>
-    <div class="notes">~30 s. My own instinct: I would only trust an AI explanation if a human checked it. I first pictured marketing managers as users and corrected that to executives.</div>
+    <div class="notes">~25 s. "'Revenue dropped 8% because of the new pricing page' sounds convincing, but it may be coincidence. I'd only trust it if a human reviewed it, so an analyst checks the output first. The users are C-level, who decide whether to act, investigate or wait."</div>
   </section>
 
   <section class="slide">
@@ -133,7 +134,7 @@
       <div class="card"><em>Why?</em><b>Causal analysis</b><span>Experiments or difference-in-differences. Otherwise only a hypothesis.</span></div>
     </div>
     <p class="sub">The language model only writes up the verified results.</p>
-    <div class="notes">~30 s. Most of this is statistics, not ML: "AI-powered" mostly means well-chosen statistics plus a writing layer. Compare against a simple rule-based baseline.</div>
+    <div class="notes">~30 s. "I split it into three questions. Is the change real? A seasonal baseline gives a normal range. Where did it come from? We break the KPI into components and segments. And why? That's causal, so it needs an experiment or difference-in-differences. Otherwise the AI offers only a hypothesis. Mostly this is statistics, and the language model only writes up verified results."</div>
   </section>
 
   <section class="slide">
@@ -145,7 +146,7 @@
       <p><b>Confidence:</b> medium. <b>Suggested action:</b> investigate checkout, verify tracking.</p>
     </div>
     <p class="fine">Illustrative numbers, not real data.</p>
-    <div class="notes">~35 s. Fact: what changed and where. Hypothesis: why, labelled as such. Confidence and a suggested action so executives can decide quickly.</div>
+    <div class="notes">~30 s. "This is what executives would see. Revenue is down 8%, outside the expected range. The drop is mostly in Germany, from lower conversion. The possible cause is a new checkout, labelled as a hypothesis, because Austria kept the old one and shows no drop. Then confidence and a suggested action. The numbers are illustrative."</div>
   </section>
 
   <section class="slide">
@@ -157,7 +158,7 @@
       <li><b>Tracking breaks</b> look like real drops</li>
       <li><b>No comparison group</b> when a change hits everyone at once</li>
     </ul>
-    <div class="notes">~25 s. The source-of-truth example is from my own performance marketing work: my team trusted Triple Whale over Meta Ads for CTR and ROAS.</div>
+    <div class="notes">~15 s. "In my marketing work, the same KPI showed different numbers in Meta Ads, the ad platform, and in Triple Whale, an analytics tool for online shops. My team chose one source of truth. A dashboard must not silently mix sources."</div>
   </section>
 
   <section class="slide">
@@ -171,7 +172,7 @@
     </table>
     <p>Austria shows what would have happened anyway because of Valentine's Day. It needs a comparison group and assumes both would have moved the same way.</p>
     <p class="sub">Corrected assumption: it is not a seasonal model, it is a way to estimate a cause without an experiment.</p>
-    <div class="notes">~25 s. Say it in your own words with the Valentine's Day bundle example. Mention: LLM as thinking partner, I made the decisions.</div>
+    <div class="notes">~25 s + 15 s closing. "My new method is difference-in-differences. New product pictures for a Valentine's bundle in Germany, old ones in Austria. Germany rose 0.7 points, Austria 0.5 because of the season, so the effect is 0.2. I first thought it was a seasonal model. It's a way to estimate a cause without an experiment." CLOSING: "In both cases the lesson was the same: AI helps once the problem is scoped, the limits are clear, and the 'why' has evidence behind it. I used an LLM as a thinking partner and made the decisions myself. Thank you."</div>
   </section>
 
 </div>

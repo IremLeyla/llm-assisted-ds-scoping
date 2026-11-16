@@ -71,7 +71,8 @@
     display: none; position: absolute; left: 0; right: 0; bottom: 0;
     background: rgba(43,43,34,.92); color: var(--beige);
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px; line-height: 1.4; padding: 14px 8vw;
+    font-size: 15px; line-height: 1.4; padding: 14px 8vw;
+    max-height: 45vh; overflow-y: auto;
   }
   body.show-notes .slide.active .notes { display: block; }
   .nav {
@@ -93,7 +94,7 @@
     <div class="tag">Scenario A6</div>
     <h1>User Onboarding Drop-off</h1>
     <p class="sub">Scoping the problem before building any model.</p>
-    <div class="notes">~10 s. Intro: product manager scoping with a DS team; the goal is to define the problem, not to build a model.</div>
+    <div class="notes">~10 s. "Hi, I'm Irem. I'll present two scenarios, and both follow one idea: before using AI, find out what the data can honestly tell us, and what it can't. First, A6, onboarding drop-off."</div>
   </section>
 
   <section class="slide">
@@ -105,7 +106,7 @@
       <li>No explanation of where or why</li>
     </ul>
     <div class="quote">We don't know where users disengage or which patterns come before it. The onboarding product team will use the answer to decide which steps to redesign or test first.</div>
-    <div class="notes">~35 s. Stress that defining "abandonment" is part of the problem. Working definition: started, did not reach the final step, did not return within X days. "Third page" is a hypothesis, not an assumption.</div>
+    <div class="notes">~30 s. "Users abandon onboarding, but nobody has defined 'abandon', and there are no labels, only event logs. So defining it is part of the problem. My working definition: the user started, didn't reach the final step, and didn't come back within a few days. I first assumed everyone drops off on one page, like the third. Now that's a hypothesis for the data to test. The people who will use our results are the team that owns the onboarding flow. They need to know which screen to improve first."</div>
   </section>
 
   <section class="slide">
@@ -120,7 +121,7 @@
       <li>A classifier would learn our guess of "abandonment" and say <i>who</i> leaves, not <i>where</i></li>
       <li>Later: A/B tests to check that fixes work</li>
     </ul>
-    <div class="notes">~35 s. My first idea was ranking/recommendation and A/B testing. Learned that the list names the ML problem type, and A/B testing is the later validation phase.</div>
+    <div class="notes">~30 s. "My first idea was recommendation and A/B tests. I learned that list names the type of ML problem. With no labels, it's unsupervised learning, with representation learning for the event data. A classifier would only learn our guess of abandonment, and tell us who leaves, not where. A/B tests come later."</div>
   </section>
 
   <section class="slide">
@@ -132,7 +133,7 @@
       <div class="card"><b>Survival analysis</b><span>Time until drop-off. Handles users who haven't left <i>yet</i>.</span></div>
     </div>
     <p class="sub">Risks: users who haven't had time to return, install-only users with no events, privacy (GDPR).</p>
-    <div class="notes">~40 s. Event-level data, grouped into sessions and one trajectory per user. Keep one row per user too early and you lose the order of events.</div>
+    <div class="notes">~25 s. "Three approaches: sequence clustering for user groups, process mining for the real paths, and survival analysis for timing. Event logs show behaviour, not motivation, so for the 'why' we'd add interviews, surveys and session replays." Then click past the next slide quickly.</div>
   </section>
 
   <section class="slide">
@@ -149,7 +150,7 @@
       <span class="pill">A/B tests</span>
     </div>
     <p class="sub">No labels, so we judge clusters by stability, comparison with the reminder-email rule, and product-team review.</p>
-    <div class="notes">~25 s. Be honest about the limit: our methods cannot tell why. The follow-up evidence does.</div>
+    <div class="notes">Already said on the previous slide. Click on straight away.</div>
   </section>
 
   <section class="slide">
@@ -160,7 +161,7 @@
       <li>Corrected assumption: drop-off at one page is a hypothesis, so let the data show where</li>
       <li>LLM used as a thinking partner, I made the final calls</li>
     </ul>
-    <div class="notes">~25 s. Say the survival analysis explanation in your own words. Mention one real moment where you contributed or corrected something.</div>
+    <div class="notes">~25 s. "My new method is survival analysis. Of 1,000 new users, 300 haven't finished onboarding. But 200 installed yesterday and may finish tomorrow, so only about 100 have really dropped off. Survival analysis keeps those 'not yet' users in the data instead of counting them as failures."</div>
   </section>
 
 </div>
