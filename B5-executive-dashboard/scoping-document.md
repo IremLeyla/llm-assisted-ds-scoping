@@ -65,14 +65,30 @@ Executives receive weekly KPI numbers but no reliable account of what changed or
 
 1. **Seasonal baseline with prediction intervals, for "is it real?"** Model each KPI's normal behaviour (trend, weekly pattern, holidays and seasonal peaks such as an Advent campaign) and forecast a range for the current week. A value outside the range is flagged as a real change, a value inside is reported as normal fluctuation. Fits because KPIs are time series with strong seasonality and no labels are needed. Should state its confidence when history is short.
 2. **KPI decomposition and driver ranking, for "where did it come from?"** Split the KPI into components and segments (e.g. revenue = customers x average spend, by region, channel and customer group) and rank how much each part contributed to the change. Simple, transparent and checkable by an analyst.
-3. **Causal checks, for "why?"** Use experiment results (e.g. an A/B test of creatives) where they exist. For changes made without randomisation (pricing page, checkout), use a quasi-experimental comparison such as difference-in-differences against an unaffected group. Without either, the system lists candidate causes from the context log (dates of launches and changes) as **hypotheses only**.
+3. **Causal checks, for "why?"** Use experiment results (e.g. an A/B test of creatives) where they exist. For changes made without randomisation (pricing page, checkout), use a quasi-experimental comparison such as difference-in-differences against an unaffected group. Without either, the system lists candidate causes from the context log (dates of launches and changes) as **hypotheses only**. Difference-in-differences also needs a comparison group: when a change hits everyone at once (for example a company-wide price change), there is none, and only a hypothesis is possible.
 
 **LLM role (writing, under guardrails):** the LLM receives only verified outputs from steps 1 to 3 plus the context log, and writes a short plain-English summary. Every number in the text must trace back to a computed value. Causes are labelled as hypotheses. An analyst reviews before executives see it.
+
+**ML vs non-ML:** most of this system is not machine learning. Decomposition is arithmetic, the "is it real" step is classical statistics (a seasonal baseline with prediction intervals), and the causal step is a statistical comparison. The only language-model part is writing up the verified results. "AI-powered" therefore mostly means well-chosen statistics plus a writing layer.
+
+**Simple baseline to beat:** a rule such as "flag any weekly change above X%" with template text. Each added part (seasonal model, causal checks, LLM writing) should be kept only if it clearly reduces false alarms or saves analyst time compared with this baseline.
+
+**Example output (illustrative numbers, not real data):**
+
+> **Week 46: revenue is down 8%, outside the expected range of -3% to +3%.** This is not normal fluctuation.
+>
+> **Where:** almost all of the drop comes from Germany (-14%), driven by a lower conversion rate (2.4% to 1.9%). Traffic is unchanged. Austria and Switzerland are within their normal ranges.
+>
+> **Possible causes (hypotheses, not confirmed):** a new checkout page launched in Germany on 4 November. Austria kept the old checkout and shows no drop, which is consistent with a checkout effect but does not prove it.
+>
+> **Confidence:** medium. Two years of history, and the period includes a promotion week.
+>
+> **Suggested action:** investigate. Product team to review the German checkout, analyst to verify tracking.
 
 **Not appropriate:**
 - **An LLM analysing raw KPI tables on its own.** It is unreliable at arithmetic on tables and fills gaps with fluent but unsupported stories.
 - **A black-box regression "explaining" revenue.** It finds correlations and presents them as causes.
-- **Deep-learning forecasters.** A few years of weekly data is too little to train them, and simpler seasonal models are easier to trust and explain.
+- **Deep-learning forecasters.** One to four years of weekly data (roughly 50 to 200 points per KPI) is too little to train them, and simpler seasonal models are easier to trust and explain.
 - **Automatic causal discovery from observational data.** It cannot reliably separate cause from coincidence here.
 
 **How we judge it:** backtest on past weeks to see whether flagged changes match ones analysts later confirmed, and measure the false-alarm rate. Check that every number in the generated summary matches the computed values. Track how often analysts correct or reject the draft.
@@ -91,7 +107,7 @@ Executives receive weekly KPI numbers but no reliable account of what changed or
 
 **Why it is relevant:** executives will ask "why did the KPI change?", which is a causal question. Often there is no time or possibility to run a randomised experiment, for example when a change such as a new checkout page is rolled out in one market only. Difference-in-differences gives a more credible estimate of the effect than a simple before/after comparison.
 
-**In my own words:** take two groups, one that got a change and one that did not, and measure both before and after. For example, for Valentine's Day we show new product pictures for a bundle on the German website and keep last year's version in Austria. Conversion goes from 1.8% to 2.5% in Germany (+0.7) and from 1.8% to 2.3% in Austria (+0.5). Austria also rose because it is Valentine's season, so the effect of the new website is the difference of the two differences: 0.7 - 0.5 = +0.2 points. It is better than comparing before and after alone because the comparison group shows what would have happened anyway because of the season. It relies on the assumption that without the change, both groups would have moved the same way.
+**In my own words:** take two groups, one that got a change and one that did not, and measure both before and after. For example, for Valentine's Day we show new product pictures for a bundle on the German website and keep last year's version in Austria. Conversion goes from 1.8% to 2.5% in Germany (+0.7) and from 1.8% to 2.3% in Austria (+0.5). Austria also rose because it is Valentine's season, so the effect of the new website is the difference of the two differences: 0.7 - 0.5 = +0.2 points. It is better than comparing before and after alone because the comparison group shows what would have happened anyway because of the season. It relies on the assumption that without the change, both groups would have moved the same way. It also needs a comparison group, so it cannot be used when a change hits everyone at once.
 
 **Other techniques met along the way:** seasonal baselines with prediction intervals, and KPI decomposition.
 

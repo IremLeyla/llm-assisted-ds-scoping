@@ -2,6 +2,15 @@
 
 Running notes for Sections 5 and 6 of the scoping document. Add entries as they happen.
 
+## My own decisions and contributions
+
+- Chose the scenario and agreed that the onboarding product team is the primary user.
+- Decided that defining "abandonment" is part of the problem, and proposed the "third page" hypothesis.
+- Chose the "explain / diagnose first" framing over prediction.
+- Contributed the reminder-email observation (a possible weak label) and the example user groups ("leaves after the first page", "installs but never opens the app").
+- Chose survival analysis as the new method to learn.
+- Read, challenged and approved each section, and decided what stayed in the document.
+
 ## Where the LLM helped clarify my thinking
 
 - Showed that "abandonment" has several possible definitions (did not finish onboarding, no second session within 7 days, never did the first key action), and that choosing one is part of the problem.

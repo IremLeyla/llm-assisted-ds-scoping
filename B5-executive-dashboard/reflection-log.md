@@ -2,6 +2,15 @@
 
 Running notes for Sections 5 and 6 of the scoping document. Add entries as they happen.
 
+## My own decisions and contributions
+
+- Chose to scope this scenario and brought my performance marketing background to it.
+- Required that a human reviews AI-written explanations before executives see them.
+- Contributed the single-source-of-truth problem from real work (Meta Ads vs Triple Whale), and the idea of comparing against the same period last year (Advent calendar) as a seasonal baseline.
+- Chose difference-in-differences as the new method and wrote the Valentine's Day example in my own words.
+- Confirmed the realistic history length (one to four years of weekly data) and accepted the mock weekly summary as a key output.
+- Read, challenged and approved each section, and decided what stayed in the document.
+
 ## Where the LLM helped clarify my thinking
 
 - Showed that "what changed and where" can be stated from data, while "why" needs evidence beyond correlation, so an AI should present causes as hypotheses.

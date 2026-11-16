@@ -23,6 +23,13 @@ Two scoping documents written as a Product Manager working with a Data Science /
 - No clean, labelled training data exists at the start.
 - Focus is on scoping and justification, not building a model.
 
+## How I worked
+
+An LLM (Claude) acted as a thinking partner: it proposed drafts, explained unfamiliar methods and challenged my framing. I made the decisions, brought in my own experience from performance marketing (for example the single-source-of-truth problem with ad and attribution tools, seasonal comparisons for campaigns, and the Valentine's Day example), and decided what stayed in each document. The reflection logs list my contributions, the corrections I received and the incorrect assumptions I had:
+
+- [A6 reflection log](A6-onboarding-dropoff/reflection-log.md)
+- [B5 reflection log](B5-executive-dashboard/reflection-log.md)
+
 ## Status
 
-Work in progress.
+Both scoping documents are complete drafts. Presentation slides: [A6 slides](https://iremleyla.github.io/llm-assisted-ds-scoping/A6-onboarding-dropoff/presentation.html).
