@@ -32,4 +32,4 @@ An LLM (Claude) acted as a thinking partner: it proposed drafts, explained unfam
 
 ## Status
 
-Both scoping documents are complete drafts. Presentation slides: [A6 slides](https://iremleyla.github.io/llm-assisted-ds-scoping/A6-onboarding-dropoff/presentation.html).
+Both scoping documents are complete drafts. Presentation slides: [A6 slides](https://iremleyla.github.io/llm-assisted-ds-scoping/A6-onboarding-dropoff/presentation.html), [B5 slides](https://iremleyla.github.io/llm-assisted-ds-scoping/B5-executive-dashboard/presentation.html).
