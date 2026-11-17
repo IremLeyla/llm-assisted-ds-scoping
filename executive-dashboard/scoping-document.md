@@ -1,4 +1,4 @@
-# B5: Executive Dashboard Automation, Scoping Document
+# Executive Dashboard Automation: Scoping Document
 
 > Scenario: Executives want an AI-powered dashboard that automatically explains weekly KPI changes.
 
@@ -12,6 +12,8 @@
 
 **Problem statement:**
 Executives receive weekly KPI numbers but no reliable account of what changed or whether the change matters, and an AI that simply writes confident-sounding "reasons" risks misleading them. The real problem is to flag which weekly changes are real, break down where they came from (which segments or components), and present possible causes as hypotheses with evidence rather than as facts. The executive team will use this to decide quickly whether a change needs action, investigation, or just monitoring.
+
+**Example of the problem:** imagine the dashboard tells executives, "Revenue dropped 8% because of the new pricing page." It sounds convincing, but the system has not shown that the drop is real, where it came from, or that the pricing page caused it. It may only have noticed that two things happened in the same week.
 
 **Decision-maker / end user:** Executives at C-level and VP level (CEO, CFO, heads of product, sales, operations). Analysts act as reviewers of the AI output before it reaches executives.
 
@@ -51,7 +53,7 @@ Executives receive weekly KPI numbers but no reliable account of what changed or
 
 **Modality:** tabular time series (primary), plus short text (campaign notes, launch descriptions).
 
-**Granularity:** daily aggregates by campaign, channel, region and customer segment, reported weekly. Time windows vary with the question: weekly for routine reporting, campaign-level for events such as a Valentine's Day campaign.
+**Granularity:** daily aggregates by campaign, channel, region and customer segment, reported weekly. Time windows vary with the question: weekly for routine reporting, campaign-level for events such as a Christmas campaign.
 
 **Labels:** none for "the real reason a KPI changed". Past analyst write-ups or incident notes could serve as a weak reference set, and analysts could label a sample of historical changes as real or noise.
 
@@ -113,7 +115,7 @@ Executives receive weekly KPI numbers but no reliable account of what changed or
 
 **Why it is relevant:** executives will ask "why did the KPI change?", which is a causal question. Often there is no time or possibility to run a randomised experiment, for example when a change such as a new checkout page is rolled out in one market only. Difference-in-differences gives a more credible estimate of the effect than a simple before/after comparison.
 
-**In my own words:** take two groups, one that got a change and one that did not, and measure both before and after. For example, for Valentine's Day we show new product pictures for a bundle on the German website and keep last year's version in Austria. Conversion goes from 1.8% to 2.5% in Germany (+0.7) and from 1.8% to 2.3% in Austria (+0.5). Austria also rose because it is Valentine's season, so the effect of the new website is the difference of the two differences: 0.7 - 0.5 = +0.2 points. It is better than comparing before and after alone because the comparison group shows what would have happened anyway because of the season. It relies on the assumption that without the change, both groups would have moved the same way. It also needs a comparison group, so it cannot be used when a change hits everyone at once.
+**In my own words:** take two groups, one that got a change and one that did not, and measure both before and after. For example, for the Christmas season we show new product pictures for a gift bundle on the German website and keep last year's version in Austria. Conversion goes from 1.8% to 3.1% in Germany (+1.3) and from 1.8% to 2.4% in Austria (+0.6). Austria also rose because it is Christmas season, so the effect of the new pictures is the difference of the two differences: 1.3 - 0.6 = +0.7 points (illustrative numbers). It is better than comparing before and after alone because the comparison group shows what would have happened anyway because of the season. It relies on the assumption that without the change, both groups would have moved the same way. It also needs a comparison group, so it cannot be used when a change hits everyone at once.
 
 **Other techniques met along the way:** seasonal baselines with prediction intervals, and KPI decomposition.
 

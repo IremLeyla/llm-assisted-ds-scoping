@@ -1,4 +1,4 @@
-# B5 Reflection Log: Working with an LLM as a Thinking Partner
+# Executive Dashboard: Reflection Log: Working with an LLM as a Thinking Partner
 
 I used an LLM (Claude) to draft, explain and challenge. The decisions, the domain knowledge and the final text are mine. This log shows how that worked in practice.
 
@@ -8,7 +8,7 @@ I used an LLM (Claude) to draft, explain and challenge. The decisions, the domai
 - **Raised the source-of-truth problem from real work.** In performance marketing, the same KPIs (CTR, ROAS) showed different numbers in Meta Ads and in Triple Whale, and my team trusted Triple Whale. It became a key data risk: the dashboard must not silently pick or mix sources.
 - **Proposed a seasonal baseline:** comparing against the same period last year (for example the Advent calendar campaign).
 - **Pointed to the correlation problem.** I said an explanation without evidence "has no real substance", which led to presenting causes as hypotheses.
-- **Chose the method to learn:** difference-in-differences. I wrote the Valentine's Day example in my own words (Germany with new product pictures vs Austria with old ones) and calculated the effect myself.
+- **Chose the method to learn:** difference-in-differences. I wrote the example in my own words (Germany with new product pictures vs Austria with old ones, first for Valentine's Day, later moved to the Christmas season) and calculated the effect myself.
 - **Confirmed a realistic history length** (one to four years of weekly data) and accepted the **mock weekly summary** as a key output.
 - **Reviewed every section** and decided what stayed in the document.
 
@@ -26,7 +26,7 @@ I used an LLM (Claude) to draft, explain and challenge. The decisions, the domai
 | Difference-in-differences is a kind of seasonal model. | It estimates the effect of a change without an experiment. It copes with seasonality only because the comparison group shares the season. | Method section states the comparison-group requirement and its limit. |
 | An LLM can analyse raw KPI tables directly. | Compute numbers with code and statistics; let the LLM write up only verified results. | Section 5 limits the LLM to wording verified numbers. |
 
-I also made a small arithmetic slip in my difference-in-differences example (+0.7 and +0.5, so the effect is +0.2), which I corrected.
+I also made a small arithmetic slip when calculating my first difference-in-differences example, which I corrected.
 
 ## What I learned
 

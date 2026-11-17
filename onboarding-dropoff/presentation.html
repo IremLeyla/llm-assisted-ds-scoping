@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A6 Onboarding Drop-off</title>
+<title>Onboarding Drop-off | Irem Baykal</title>
 <style>
   :root {
     --beige: #f5efe0;
@@ -67,14 +67,6 @@
     font-family: "Helvetica Neue", Arial, sans-serif; margin-right: .5em;
   }
   .row { display: flex; flex-wrap: wrap; gap: 1vh .5vw; }
-  .notes {
-    display: none; position: absolute; left: 0; right: 0; bottom: 0;
-    background: rgba(43,43,34,.92); color: var(--beige);
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 15px; line-height: 1.4; padding: 14px 8vw;
-    max-height: 45vh; overflow-y: auto;
-  }
-  body.show-notes .slide.active .notes { display: block; }
   .nav {
     position: fixed; right: 20px; bottom: 16px;
     font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14px; color: var(--muted);
@@ -83,7 +75,7 @@
   .deck { counter-reset: s; }
   .slide { counter-increment: s; }
   .slide::after {
-    content: "Irem \00b7 ML problem scoping \00b7 " counter(s) " / 8";
+    content: "Irem Baykal \00b7 ML problem scoping \00b7 " counter(s) " / 8";
     position: absolute; left: 8vw; bottom: 2.4vh;
     font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12px; letter-spacing: .06em; color: var(--muted);
   }
@@ -112,11 +104,10 @@
 <div class="deck" id="deck">
 
   <section class="slide title">
-    <div class="tag">Case study 1 of 2 &middot; Scenario A6</div>
+    <div class="tag">Case study 1 of 2</div>
     <h1>User Onboarding Drop-off</h1>
     <p class="sub">How to scope a vague "use AI" request before any model is built.</p>
-    <p class="byline">Irem &middot; ML problem scoping, with an LLM as thinking partner</p>
-    <div class="notes">~10 s. "Hi, I'm Irem. I'll present two scenarios, and both follow one idea: before using AI, find out what the data can honestly tell us, and what it can't. First, A6, onboarding drop-off."</div>
+    <p class="byline">Irem Baykal &middot; ML problem scoping, with an LLM as thinking partner</p>
   </section>
 
   <section class="slide">
@@ -128,7 +119,6 @@
       <li>No explanation of where or why</li>
     </ul>
     <div class="quote">We don't know where users disengage or which patterns come before it. The onboarding product team will use the answer to decide which steps to redesign or test first.</div>
-    <div class="notes">~30 s. "Users abandon onboarding, but nobody has defined 'abandon', and there are no labels, only event logs. So defining it is part of the problem. My working definition: the user started, didn't reach the final step, and didn't come back within a few days. I first assumed everyone drops off on one page, like the third. Now that's a hypothesis for the data to test. The people who will use our results are the team that owns the onboarding flow. They need to know which screen to improve first."</div>
   </section>
 
   <section class="slide">
@@ -143,7 +133,6 @@
       <li>A classifier would learn our guess of "abandonment" and say <i>who</i> leaves, not <i>where</i></li>
       <li>Later: A/B tests to check that fixes work</li>
     </ul>
-    <div class="notes">~30 s. "My first idea was recommendation and A/B tests. I learned that list names the type of ML problem. With no labels, it's unsupervised learning, with representation learning for the event data. A classifier would only learn our guess of abandonment, and tell us who leaves, not where. A/B tests come later."</div>
   </section>
 
   <section class="slide">
@@ -155,7 +144,6 @@
       <li>No labels. The reminder-email rule could be a first weak label</li>
       <li>Risks: users who haven't returned yet, install-only users with no events, privacy (GDPR)</li>
     </ul>
-    <div class="notes">~25 s. "What data would we have? Event logs: taps, scrolls, screen views, plus install and device information. I learned to keep the data at event level, not one row per user, because otherwise we lose the order of events. There are no labels, but an existing reminder-email rule could be a first weak label. The risks: users who haven't had time to return, install-only users who produce no events at all, and privacy."</div>
   </section>
 
   <section class="slide">
@@ -166,7 +154,6 @@
       <div class="card"><b>Process mining</b><span>Map real transitions between screens. Shows what a simple funnel hides.</span></div>
       <div class="card"><b>Survival analysis</b><span>Time until drop-off. Handles users who haven't left <i>yet</i>.</span></div>
     </div>
-    <div class="notes">~20 s. "Three approaches: sequence clustering finds the user groups, process mining maps the real paths between screens, and survival analysis models timing."</div>
   </section>
 
   <section class="slide">
@@ -183,7 +170,6 @@
       <span class="pill">A/B tests</span>
     </div>
     <p class="sub">No labels, so we judge clusters by stability, comparison with the reminder-email rule, and product-team review.</p>
-    <div class="notes">~20 s. "Where and how users leave comes from the event data. For the why, we'd add interviews, exit surveys, session replays and A/B tests. And with no labels, we'd judge the clusters by their stability, by comparing them with the reminder rule, and by product-team review."</div>
   </section>
 
   <section class="slide">
@@ -195,7 +181,6 @@
       <li>Corrected assumption: drop-off at one page is a hypothesis, so let the data show where</li>
       <li>LLM used as a thinking partner, I made the final calls</li>
     </ul>
-    <div class="notes">~25 s. "My new method is survival analysis. Of 1,000 new users, 300 haven't finished onboarding. But 200 installed yesterday and may finish tomorrow, so only about 100 have really dropped off. Survival analysis keeps those 'not yet' users in the data instead of counting them as failures."</div>
   </section>
 
   <section class="slide">
@@ -207,11 +192,10 @@
       <li><b>It corrected me:</b> I read the problem-type list as "what to recommend". It names the kind of ML problem</li>
     </ul>
     <p class="repo">Full scoping document and reflection log: github.com/IremLeyla/ml-problem-scoping-case-studies</p>
-    <div class="notes">~20 s. "I used the LLM as a thinking partner: it drafted and explained, and I decided. It helped me see that 'abandonment' has several possible definitions. I added the reminder-email observation and the example user groups, which refined the data scope. And it corrected me: I read the problem-type list as 'what to recommend', but it names the kind of ML problem."</div>
   </section>
 
 </div>
-<div class="nav">&larr; &rarr; to move &middot; N for notes</div>
+<div class="nav">&larr; &rarr; to move</div>
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
   const bar = document.getElementById('bar');
@@ -225,7 +209,6 @@
   document.addEventListener('keydown', e => {
     if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
     else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
-    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('show-notes');
   });
   document.addEventListener('click', e => { show(e.clientX > innerWidth / 2 ? i + 1 : i - 1); });
   show(parseInt(location.hash.slice(1), 10) - 1 || 0);

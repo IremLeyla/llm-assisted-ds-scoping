@@ -1,4 +1,4 @@
-# A6: User Onboarding Drop-off, Scoping Document
+# User Onboarding Drop-off: Scoping Document
 
 > Scenario: Many users abandon the app during onboarding. We have high-dimensional event data from early sessions, but no clear explanation for where or why users disengage.
 

@@ -1,4 +1,4 @@
-# A6 Reflection Log: Working with an LLM as a Thinking Partner
+# Onboarding Drop-off: Reflection Log: Working with an LLM as a Thinking Partner
 
 I used an LLM (Claude) to draft, explain and challenge. The decisions, the corrections and the final text are mine. This log shows how that worked in practice.
 
