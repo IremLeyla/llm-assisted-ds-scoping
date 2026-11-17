@@ -1,35 +1,35 @@
-# B5 Reflection Log
+# B5 Reflection Log: Working with an LLM as a Thinking Partner
 
-Running notes for Sections 5 and 6 of the scoping document. Add entries as they happen.
+I used an LLM (Claude) to draft, explain and challenge. The decisions, the domain knowledge and the final text are mine. This log shows how that worked in practice.
 
-## My own decisions and contributions
+## Decisions I made
 
-- Chose to scope this scenario and brought my performance marketing background to it.
-- Required that a human reviews AI-written explanations before executives see them.
-- Contributed the single-source-of-truth problem from real work (Meta Ads vs Triple Whale), and the idea of comparing against the same period last year (Advent calendar) as a seasonal baseline.
-- Chose difference-in-differences as the new method and wrote the Valentine's Day example in my own words.
-- Confirmed the realistic history length (one to four years of weekly data) and accepted the mock weekly summary as a key output.
-- Read, challenged and approved each section, and decided what stayed in the document.
+- **Required human review.** AI-written explanations must be reviewed by an analyst before executives see them. This became the human-in-the-loop requirement.
+- **Raised the source-of-truth problem from real work.** In performance marketing, the same KPIs (CTR, ROAS) showed different numbers in Meta Ads and in Triple Whale, and my team trusted Triple Whale. It became a key data risk: the dashboard must not silently pick or mix sources.
+- **Proposed a seasonal baseline:** comparing against the same period last year (for example the Advent calendar campaign).
+- **Pointed to the correlation problem.** I said an explanation without evidence "has no real substance", which led to presenting causes as hypotheses.
+- **Chose the method to learn:** difference-in-differences. I wrote the Valentine's Day example in my own words (Germany with new product pictures vs Austria with old ones) and calculated the effect myself.
+- **Confirmed a realistic history length** (one to four years of weekly data) and accepted the **mock weekly summary** as a key output.
+- **Reviewed every section** and decided what stayed in the document.
 
-## Where the LLM helped clarify my thinking
+## What the LLM added
 
-- Showed that "what changed and where" can be stated from data, while "why" needs evidence beyond correlation, so an AI should present causes as hypotheses.
-- Suggested splitting a KPI into components (e.g. revenue = customers x average spend) and asking first whether the change is real or just weekly noise.
+- Separated what can be stated from data ("what changed and where") from what needs evidence beyond correlation ("why").
+- Suggested splitting a KPI into components (revenue = customers x average spend) and asking first whether a change is real or weekly noise.
+- Explained difference-in-differences and its parallel-trends assumption.
 
-## Where I contributed, challenged or refined
+## Where I was corrected, and what changed
 
-- My own instinct: I would only trust an AI-written explanation if a human reviewed it. This became the human-in-the-loop requirement.
-- From my performance marketing experience: the same KPI (CTR, ROAS) showed different numbers in Meta Ads and in Triple Whale, and my team decided to trust Triple Whale as the single source of truth. This became a key data risk: the dashboard must not silently pick or mix sources.
-- I said the explanation "has no real substance" behind it, which pointed to the correlation vs causation problem.
+| My first assumption | Correction | Effect on the document |
+|---|---|---|
+| The executives are marketing managers (my own background). | "Executives" usually means C-level and VP level, who need a few lines and a decision, not campaign detail. | Problem statement and the mock summary are written for that audience. |
+| Difference-in-differences is a kind of seasonal model. | It estimates the effect of a change without an experiment. It copes with seasonality only because the comparison group shares the season. | Method section states the comparison-group requirement and its limit. |
+| An LLM can analyse raw KPI tables directly. | Compute numbers with code and statistics; let the LLM write up only verified results. | Section 5 limits the LLM to wording verified numbers. |
 
-## Incorrect assumptions and how they were corrected
+I also made a small arithmetic slip in my difference-in-differences example (+0.7 and +0.5, so the effect is +0.2), which I corrected.
 
-- **Assumption:** the executives are marketing managers (this came from my own background in performance marketing). **Correction:** executives usually means C-level and VP level (CEO, CFO, heads of product, sales, operations), who need a few lines and a decision, not campaign-level detail.
+## What I learned
 
-- **Assumption:** difference-in-differences is a kind of seasonal model. **Correction:** it is a method for estimating the effect of a change without an experiment. It copes with seasonality only because the comparison group shares the same season.
-- **Assumption:** an LLM can analyse raw KPI tables directly. **Correction:** compute the numbers with code and statistics, and let the LLM write up only verified results.
-
-## Methods I did not know before
-
-- **Difference-in-differences:** compares the change in a group that got an intervention with the change in a comparison group that did not, to separate the effect from what would have happened anyway (e.g. season). Relies on the parallel-trends assumption.
-- Seasonal baselines with prediction intervals, and KPI decomposition (met, not explored in depth).
+- **Difference-in-differences:** compares the change in a group that got an intervention with the change in a comparison group that didn't, to separate the effect from what would have happened anyway. It relies on parallel trends and needs a comparison group.
+- **Seasonal baselines with prediction intervals** and **KPI decomposition** (understood at concept level, not implemented).
+- **How to use an LLM well:** bring domain knowledge, ask for reasons, and decide what an AI should and should not be trusted to do.
