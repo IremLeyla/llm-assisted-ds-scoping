@@ -80,6 +80,27 @@
     font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14px; color: var(--muted);
   }
   .bar { position: fixed; left: 0; top: 0; height: 5px; background: var(--green); transition: width .25s; }
+  .deck { counter-reset: s; }
+  .slide { counter-increment: s; }
+  .slide::after {
+    content: "Irem \00b7 ML problem scoping \00b7 " counter(s) " / 8";
+    position: absolute; left: 8vw; bottom: 2.4vh;
+    font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12px; letter-spacing: .06em; color: var(--muted);
+  }
+  .slide.title { background: var(--green); color: var(--beige); }
+  .slide.title h1, .slide.title .tag, .slide.title .sub { color: var(--beige); }
+  .slide.title .tag { color: var(--sage); }
+  .slide.title::after { color: var(--sage); }
+  .byline { font-family: "Helvetica Neue", Arial, sans-serif; font-size: clamp(14px, 1.8vw, 22px); color: var(--sage); letter-spacing: .04em; }
+  .flow { display: flex; height: 7vh; border-radius: 10px; overflow: hidden; font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(12px, 1.6vw, 20px); font-weight: 600; }
+  .flow div { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 .5vw; }
+  .flow .ok { flex: 7; background: var(--sage); color: var(--ink); }
+  .flow .wait { flex: 2; background: var(--beige-deep); color: var(--ink); border: 2px dashed var(--green); }
+  .flow .gone { flex: 1; background: var(--green); color: var(--beige); }
+  .closing { background: var(--green); color: var(--beige); padding: 2.4vh 2.4vw; border-radius: 14px; font-size: clamp(16px, 2.1vw, 26px); line-height: 1.35; }
+  .repo { font-family: "Helvetica Neue", Arial, sans-serif; font-size: clamp(12px, 1.5vw, 18px); color: var(--green); }
+  @media print { .slide.title { background: var(--green) !important; } }
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }
     .slide { overflow-y: auto; justify-content: flex-start; padding-top: 8vh; }
@@ -90,16 +111,17 @@
 <div class="bar" id="bar"></div>
 <div class="deck" id="deck">
 
-  <section class="slide">
-    <div class="tag">Scenario A6</div>
+  <section class="slide title">
+    <div class="tag">Case study 1 of 2 &middot; Scenario A6</div>
     <h1>User Onboarding Drop-off</h1>
-    <p class="sub">Scoping the problem before building any model.</p>
+    <p class="sub">How to scope a vague "use AI" request before any model is built.</p>
+    <p class="byline">Irem &middot; ML problem scoping, with an LLM as thinking partner</p>
     <div class="notes">~10 s. "Hi, I'm Irem. I'll present two scenarios, and both follow one idea: before using AI, find out what the data can honestly tell us, and what it can't. First, A6, onboarding drop-off."</div>
   </section>
 
   <section class="slide">
     <div class="tag">1 &middot; The problem</div>
-    <h2>"Users abandon onboarding."</h2>
+    <h2>Users abandon onboarding, but nobody knows where or why</h2>
     <ul>
       <li>No agreed definition of abandonment</li>
       <li>No labels, only raw event logs</li>
@@ -166,8 +188,9 @@
 
   <section class="slide">
     <div class="tag">6 &middot; What I learned</div>
-    <h2>Survival analysis</h2>
-    <div class="quote">300 of 1,000 new users haven't finished onboarding, but 200 installed yesterday and may finish tomorrow. Only about 100 have really dropped off. Survival analysis keeps those "not yet" users in the data instead of counting them as failures.</div>
+    <h2>Survival analysis: counting users who haven't left <i>yet</i></h2>
+    <div class="flow"><div class="ok">700 finished</div><div class="wait">200 not yet</div><div class="gone">100 left</div></div>
+    <p>Of 1,000 new users, 300 have not finished. But 200 installed yesterday and may finish tomorrow. Survival analysis keeps them in the data instead of counting them as failures.</p>
     <ul>
       <li>Corrected assumption: drop-off at one page is a hypothesis, so let the data show where</li>
       <li>LLM used as a thinking partner, I made the final calls</li>
@@ -177,12 +200,13 @@
 
   <section class="slide">
     <div class="tag">7 &middot; How I used the LLM</div>
-    <h2>Thinking partner, my decisions</h2>
+    <h2>An LLM as thinking partner, with me deciding</h2>
     <ul>
       <li><b>It helped:</b> showed that "abandonment" has several possible definitions, so defining it is part of the problem</li>
       <li><b>I added:</b> the reminder-email observation and example user groups, which refined the data scope</li>
       <li><b>It corrected me:</b> I read the problem-type list as "what to recommend". It names the kind of ML problem</li>
     </ul>
+    <p class="repo">Full scoping document and reflection log: github.com/IremLeyla/ml-problem-scoping-case-studies</p>
     <div class="notes">~20 s. "I used the LLM as a thinking partner: it drafted and explained, and I decided. It helped me see that 'abandonment' has several possible definitions. I added the reminder-email observation and the example user groups, which refined the data scope. And it corrected me: I read the problem-type list as 'what to recommend', but it names the kind of ML problem."</div>
   </section>
 

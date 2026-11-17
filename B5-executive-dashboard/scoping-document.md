@@ -2,6 +2,12 @@
 
 > Scenario: Executives want an AI-powered dashboard that automatically explains weekly KPI changes.
 
+## Summary
+
+- **Problem:** executives want an AI dashboard that explains weekly KPI changes, but an AI that writes confident "reasons" can mislead them.
+- **Approach:** split it into three questions. Is the change real (seasonal baseline), where did it come from (KPI decomposition), why did it happen (causal checks, otherwise labelled hypotheses). Statistics produce the numbers, the LLM only writes up verified results, and an analyst reviews before executives see it.
+- **Key decision:** most of the system is not ML, and every added part must beat a simple "flag changes above X%" rule to stay.
+
 ## 1. Problem Clarification
 
 **Problem statement:**

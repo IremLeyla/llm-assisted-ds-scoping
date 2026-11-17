@@ -95,6 +95,27 @@
     font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14px; color: var(--muted);
   }
   .bar { position: fixed; left: 0; top: 0; height: 5px; background: var(--green); transition: width .25s; }
+  .deck { counter-reset: s; }
+  .slide { counter-increment: s; }
+  .slide::after {
+    content: "Irem \00b7 ML problem scoping \00b7 " counter(s) " / 8";
+    position: absolute; left: 8vw; bottom: 2.4vh;
+    font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12px; letter-spacing: .06em; color: var(--muted);
+  }
+  .slide.title { background: var(--green); color: var(--beige); }
+  .slide.title h1, .slide.title .tag, .slide.title .sub { color: var(--beige); }
+  .slide.title .tag { color: var(--sage); }
+  .slide.title::after { color: var(--sage); }
+  .byline { font-family: "Helvetica Neue", Arial, sans-serif; font-size: clamp(14px, 1.8vw, 22px); color: var(--sage); letter-spacing: .04em; }
+  .flow { display: flex; height: 7vh; border-radius: 10px; overflow: hidden; font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(12px, 1.6vw, 20px); font-weight: 600; }
+  .flow div { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 .5vw; }
+  .flow .ok { flex: 7; background: var(--sage); color: var(--ink); }
+  .flow .wait { flex: 2; background: var(--beige-deep); color: var(--ink); border: 2px dashed var(--green); }
+  .flow .gone { flex: 1; background: var(--green); color: var(--beige); }
+  .closing { background: var(--green); color: var(--beige); padding: 2.4vh 2.4vw; border-radius: 14px; font-size: clamp(16px, 2.1vw, 26px); line-height: 1.35; }
+  .repo { font-family: "Helvetica Neue", Arial, sans-serif; font-size: clamp(12px, 1.5vw, 18px); color: var(--green); }
+  @media print { .slide.title { background: var(--green) !important; } }
   @media (max-width: 700px) {
     table { width: 100%; }
     th, td { padding: 1vh 1vw; }
@@ -107,10 +128,11 @@
 <div class="bar" id="bar"></div>
 <div class="deck" id="deck">
 
-  <section class="slide">
-    <div class="tag">Scenario B5</div>
+  <section class="slide title">
+    <div class="tag">Case study 2 of 2 &middot; Scenario B5</div>
     <h1>Executive Dashboard Automation</h1>
     <p class="sub">"An AI that explains weekly KPI changes": what can it honestly say?</p>
+    <p class="byline">Irem &middot; ML problem scoping, with an LLM as thinking partner</p>
     <div class="notes">~15 s. "Second, B5: executives want an AI dashboard that explains weekly KPI changes. I worked as a performance marketing manager, so I looked at it from that side."</div>
   </section>
 
@@ -139,6 +161,7 @@
 
   <section class="slide">
     <div class="tag">3 &middot; What executives would see</div>
+    <h2>A short summary with its evidence, not a story</h2>
     <div class="summary">
       <p class="head"><b>Week 46: revenue down 8%</b>, outside the expected range of -3% to +3%.</p>
       <p><b>Where:</b> mostly Germany (-14%), lower conversion (2.4% to 1.9%). Austria and Switzerland normal.</p>
@@ -175,8 +198,8 @@
   </section>
 
   <section class="slide">
-    <div class="tag">6 &middot; What I learned</div>
-    <h2>Difference-in-differences</h2>
+    <div class="tag">6 &middot; What I learned &middot; Difference-in-differences</div>
+    <h2>Estimating a cause without an experiment</h2>
     <table>
       <tr><th>Conversion</th><th>Before</th><th>After</th><th>Change</th></tr>
       <tr><td>Germany (new pictures)</td><td>1.8%</td><td>2.5%</td><td>+0.7</td></tr>
@@ -190,12 +213,14 @@
 
   <section class="slide">
     <div class="tag">7 &middot; How I used the LLM</div>
-    <h2>Thinking partner, my decisions</h2>
+    <h2>An LLM as thinking partner, with me deciding</h2>
     <ul>
       <li><b>It helped:</b> split "explain a KPI" into three questions with different methods</li>
       <li><b>I added:</b> the human-review rule, the source-of-truth problem and the seasonal comparison, all from my own work</li>
       <li><b>It corrected me:</b> I wanted to give an LLM two years of KPIs to "analyze". It is unreliable on raw tables, so code computes the numbers and the LLM only writes them up</li>
     </ul>
+    <div class="closing">AI helps once the problem is scoped, the limits are clear, and the "why" has evidence behind it.</div>
+    <p class="repo">Full scoping document and reflection log: github.com/IremLeyla/ml-problem-scoping-case-studies</p>
     <div class="notes">~40 s. "Same here: the LLM was a thinking partner. It helped me split 'explain a KPI' into three questions. I added the human-review rule, the source-of-truth problem and the seasonal comparison from my own work. And it corrected me: I first wanted to give an LLM two years of KPIs and ask it to analyze them, but LLMs are unreliable on raw tables, so code computes the numbers and the LLM only writes them up." CLOSING: "In both cases the lesson was the same: AI helps once the problem is scoped, the limits are clear, and the 'why' has evidence behind it. Thank you."</div>
   </section>
 

@@ -2,6 +2,12 @@
 
 > Scenario: Many users abandon the app during onboarding. We have high-dimensional event data from early sessions, but no clear explanation for where or why users disengage.
 
+## Summary
+
+- **Problem:** users abandon onboarding, but "abandonment" is undefined, there are no labels, and nobody knows where or why users leave.
+- **Approach:** diagnose before predicting. Cluster user paths from event logs, map real screen-to-screen transitions, and use survival analysis for users who haven't left *yet*. The "why" needs interviews, surveys and experiments on top.
+- **Key decision:** no classifier until the definition of abandonment is validated, because it would learn our guess and say who leaves, not where.
+
 ## 1. Problem Clarification
 
 **Problem statement:**
@@ -12,7 +18,7 @@ We don't know where in the onboarding flow users disengage or which behavioural 
 **Decision it informs:** Which onboarding screens or steps to fix, cut or A/B test first.
 
 **Working definition of abandonment (to be tested, not assumed):**
-A user has abandoned onboarding if they started it, did not reach the final step, and did not return to finish it within X days. Alternatives to compare: no second session within 7 days; never performing the first key action.
+A user has abandoned onboarding if they started it, did not reach the final step, and did not return to finish it within 7 days (default, to be validated against the data). Alternatives to compare: no second session within 7 days; never performing the first key action.
 
 **Hypothesis, not assumption:** users may drop off around a specific screen (e.g. the third page). The data should show where, and there may be several drop-off patterns.
 
@@ -85,7 +91,7 @@ A user has abandoned onboarding if they started it, did not reach the final step
 
 **Where it helped clarify my thinking:** it showed me that "abandonment" has several possible definitions (did not finish onboarding, no second session within 7 days, never did the first key action), so defining it is part of the problem. It also explained that the problem-type list describes the kind of ML question being asked, not what the product team will do. That moved my first idea (ranking / recommendation, A/B testing) to its correct place: A/B testing is a later validation phase.
 
-**Where I challenged or refined its output:** my own experience refined the data scope. I pointed out that apps send reminders when onboarding is unfinished, which led us to treat that reminder rule as a candidate weak label. I also suggested user groups such as "install but never open the app", which exposed a gap in the LLM's draft: those users produce no events, so they are invisible in event logs and need to be tracked through install data.
+**Where I challenged or refined its output:** my own experience refined the data scope. I pointed out that apps send reminders when onboarding is unfinished, which led us to treat that reminder rule as a candidate weak label. I also suggested user groups such as "install but never open the app". Working through that example together, we realised those users produce no events, so they are invisible in event logs and need to be tracked through install data.
 
 ## 6. Unknown Methods Discovery
 

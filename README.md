@@ -4,6 +4,10 @@ What do you do when leadership says "can we use AI for this?" and nobody has def
 
 This was a bootcamp assignment (neuefische, "Applied LLMs for Business Cases"). The brief: given a vaguely defined problem where leadership wants to "use AI", scope it as a Product Manager working with a Data Science / ML team. No model is built, and no clean labelled data exists at the start. Work is judged on clarity of thinking, scope and justification.
 
+**About me:** I come from performance marketing (campaign analytics, attribution tools, seasonal comparisons) and am moving into data and ML product work. That background shapes the examples in both cases.
+
+**Also in this repo:** [All slides as one PDF](presentations.pdf) (16 pages).
+
 ## Case studies
 
 | Case | The vague request | Scoping document | Slides |
